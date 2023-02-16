@@ -9,12 +9,10 @@ let UserForm=()=>{
             msg:e.target[1].value
         }
         await FormPostHandler(userData)
-        // await getData()
-        // await console.log(obj)
     }
 
     let FormPostHandler= async (userData)=>{
-        await fetch('http://localhost:5258/api/Demo',{
+         fetch('http://localhost:5258/api/Demo',{
                 method:'POST',
                 headers:{
                    'Content-Type':'application/json'
@@ -23,11 +21,7 @@ let UserForm=()=>{
             })
 
     }
-    let getData= async()=> {
-        const actualData = await fetch('http://localhost:5258/api/Demo/4')
-        let jsonActualData=await actualData.json()
-        await setObj(jsonActualData)
-      }
+    
 
     return(
         <React.Fragment>
