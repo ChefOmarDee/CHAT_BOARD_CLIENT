@@ -1,24 +1,29 @@
 import React,{useEffect,useState} from "react"
-
+import MessageAdder from "./MesssageAdder"
 let MessageDisplay=()=>{
-    let [retrievedMessage,setRetrievedMessage]=useState('')
+    let [retrievedMessage,setRetrievedMessage]=useState([])
 
-    let getData= async()=> {
-        const actualData = await fetch('http://localhost:5258/api/Demo')
-        let jsonActualData=await actualData.json()
-        await setRetrievedMessage(jsonActualData)
-      }
-
+    
+    let getData=()=> 
+    {
+       fetch("http://localhost:5258/api/Demo")
+      .then(res => res.json())
+      .then
+      (
+        (result) => {
+          setRetrievedMessage(result)
+        },
+      )
+    }
 
     useEffect(() => {
           getData()
     },[]);
 
-return(
-    <React.Fragment>
-        <p>hello</p>
-        {(retrievedMessage) ? <p>{(retrievedMessage[0]).name}</p> :<p>NOway</p>}
-    </React.Fragment>
-)
+    return(
+        <React.Fragment>
+            <MessageAdder retrievedMessage={retrievedMessage}/>
+        </React.Fragment>
+    )
 }
 export default MessageDisplay

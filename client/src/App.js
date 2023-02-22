@@ -6,7 +6,7 @@ function App() {
   return (
     <React.Fragment>
       <UserForm/>
-      <MessageDisplay/>
+      {/* <MessageDisplay/> */}
     </React.Fragment>
   );
 }
